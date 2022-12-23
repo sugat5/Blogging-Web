@@ -1,5 +1,6 @@
-require("dotenv").config();
+require("dotenv").config()
 const express = require("express");
+const cors = require('cors')
 const app = express();
 const bodyParser = require("body-parser");
 const mongodbURL = process.env.DATABASE_URL;
@@ -9,6 +10,7 @@ mongoose.set("strictQuery", true);
 const jsonParser = bodyParser.json();
 const { v4: uuidv4 } = require("uuid");
 const dataBase = mongoose.connect(mongodbURL);
+app.use(cors())
 
 app.post("/signup", jsonParser, async (req, res) => {
   const existingUser = await User.findOne({ email: req.body.email });
@@ -29,23 +31,7 @@ app.post("/signup", jsonParser, async (req, res) => {
   res.send({ msg: "User Created Successfully", authToken });
 });
 
-<<<<<<< HEAD
-app.post("/signin",jsonParser,async(req,res)=>{
-    const user= await User.findOne({email:req.body.email})
-    if(user){
-        const authToken=uuidv4()
-        user.authToken.authToken(authToken)
-       await user.save()
-     return  res.send({msg:"Logged In"})
-        
-}if(user.password !== req.body.password){
-   return res.send({error:"Incorrect Password"})
-}
-else{
-   return res.send({msg:"User Not Found,Please Signup"})
-}
-=======
-app.post("/signin", jsonParser, async (req, res) => {
+app.post("/signin",  async (req, res) => {
   const existingUser = await User.findOne({ email: req.body.email });
   if (!existingUser) {
     return res.send({ msg: "User Not Found,Please Signup" }).status(400)
@@ -60,7 +46,6 @@ app.post("/signin", jsonParser, async (req, res) => {
     
   }
 );
->>>>>>> 4013084d2a4785727c7e204569e406d3366ed829
 
 app.get("/", (req, res) => {
   res.send("Hii My Name is Suga");
@@ -68,7 +53,7 @@ app.get("/", (req, res) => {
 
 dataBase
   .then(() => {
-    app.listen(3000, (req, res) => {
+    app.listen(5000, (req, res) => {
       console.log("Server Started");
     });
   })
