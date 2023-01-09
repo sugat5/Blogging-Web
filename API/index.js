@@ -1,6 +1,5 @@
 require("dotenv").config()
 const express = require("express");
-const cors = require('cors')
 const app = express();
 const bodyParser = require("body-parser");
 const mongodbURL = process.env.DATABASE_URL;
@@ -10,7 +9,7 @@ mongoose.set("strictQuery", true);
 const jsonParser = bodyParser.json();
 const { v4: uuidv4 } = require("uuid");
 const dataBase = mongoose.connect(mongodbURL);
-app.use(cors())
+
 
 app.post("/signup", jsonParser, async (req, res) => {
   const existingUser = await User.findOne({ email: req.body.email });

@@ -18,8 +18,9 @@ function Signin() {
   });
 
   return (
+    <div className="bg">
     <div className="Signup-App">
-      <h1>Sign in now</h1>
+      <h1>Sign in</h1>
       <form onSubmit={formik.handleSubmit}>
         <input
           name="email"
@@ -36,13 +37,14 @@ function Signin() {
           placeholder="Password" className="input-box"
         ></input>
 
-        <button type="submit" className="signup-btn">Sign up</button>
-        <hr />
+        <button type="submit" className="signup-btn">Sign in</button>
+      
 
         <p>
-          Dont have an account? <Link className="link">Sign up</Link>
+          Dont have an account? <Link className="link" to="/signup">Sign up</Link>
         </p>
       </form>
+    </div>
     </div>
   );
 }
