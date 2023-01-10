@@ -8,7 +8,7 @@ export const SignupReducer = (
   state = initialSignupState,
   { type, payload }
 ) => {
-  console.log(type,payload);
+  console.log(type, payload);
   switch (type) {
     case SIGNUP:
       return { ...state, loadingState: APILoadingStatus.STARTED };
@@ -17,14 +17,14 @@ export const SignupReducer = (
       return {
         ...state,
         loadingState: APILoadingStatus.SUCCESS,
-        ...payload
+        ...payload,
       };
 
     case SIGNUP_FAILED:
       return {
         ...state,
         loadingState: APILoadingStatus.FAILED,
-        error:payload
+        error: payload,
       };
     default:
       return state;

@@ -17,8 +17,10 @@ function Signup() {
   useEffect(() => {
     if (signupState.loadingState === APILoadingStatus.SUCCESS) {
       alert("Sign up successful")
+      navigate("/")
     } else if (signupState.loadingState === APILoadingStatus.FAILED) {
        alert("User exists, please sign in"); 
+       navigate("/signin")
     }
   }, [signupState])
   const formik = useFormik({
